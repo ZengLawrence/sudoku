@@ -3,9 +3,6 @@
  */
 package game;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import algo.Backtrack;
 
 /**
@@ -14,22 +11,22 @@ import algo.Backtrack;
  */
 public final class Sudoku extends Backtrack<SudokuBoard>{
 
-	private final List<Coordinate> moves;
+	private final Coordinate[] moves;
 	
 	public Sudoku() {
-		moves = new ArrayList<>();
+		moves = new Coordinate[SudokuBoard.NCELLS];
 	}
 
 	@Override
 	protected void unmakeMove(int[] a, int k, SudokuBoard board) {
-		// TODO Auto-generated method stub
+		board.unfill(moves[k]);
 	}
 
 	@Override
 	protected void makeMove(int[] a, int k, SudokuBoard board) {
-		board.fill(moves.get(k), a[k]);		
+		board.fill(moves[k], a[k]);		
 	}
-
+	
 	@Override
 	protected int[] constructCandidates(int[] a, int k, SudokuBoard board) {
 		// TODO Auto-generated method stub

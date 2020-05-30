@@ -8,6 +8,7 @@ import java.util.List;
 final class SudokuBoard {
 
 	private static final int DIMENSION = 9;
+	static final int NCELLS = DIMENSION*DIMENSION;
 	
 	private static final int FREE_CELL = 0;
 	
