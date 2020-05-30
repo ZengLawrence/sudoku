@@ -91,8 +91,44 @@ class SudokuBoardTest {
 				{0, 0, 0, 0, 0, 3, 0, 0, 0},
 				{0, 0, 0, 0, 0, 0, 0, 0, 0}
 		};
-		SudokuBoard boardAfterMove = new SudokuBoard(endValues);
-		assertThat(board, is(boardAfterMove));
+		SudokuBoard boardAfterFill = new SudokuBoard(endValues);
+		assertThat(board, is(boardAfterFill));
+	}
+
+	@Test
+	@DisplayName("Unfill a cell, change it to free space i.e. 0")
+	void testUnfill() {
+		
+		int[][] startValues = {
+				{0, 1, 0, 0, 0, 0, 0, 0, 0},
+				{0, 0, 0, 0, 0, 0, 0, 0, 0},
+				{0, 0, 2, 0, 0, 0, 0, 0, 0},
+				{0, 0, 0, 0, 0, 0, 0, 0, 0},
+				{0, 0, 0, 0, 0, 0, 0, 0, 0},
+				{0, 0, 0, 0, 0, 0, 0, 0, 5},
+				{0, 0, 0, 0, 0, 0, 0, 0, 0},
+				{0, 0, 0, 0, 0, 0, 0, 0, 0},
+				{0, 0, 0, 0, 0, 3, 0, 0, 0},
+				{0, 0, 0, 0, 0, 0, 0, 0, 0}
+		};
+		SudokuBoard board = new SudokuBoard(startValues);
+		
+		board.unfill(new Coordinate(2, 2));
+		
+		int[][] endValues = {
+				{0, 1, 0, 0, 0, 0, 0, 0, 0},
+				{0, 0, 0, 0, 0, 0, 0, 0, 0},
+				{0, 0, 0, 0, 0, 0, 0, 0, 0},
+				{0, 0, 0, 0, 0, 0, 0, 0, 0},
+				{0, 0, 0, 0, 0, 0, 0, 0, 0},
+				{0, 0, 0, 0, 0, 0, 0, 0, 5},
+				{0, 0, 0, 0, 0, 0, 0, 0, 0},
+				{0, 0, 0, 0, 0, 0, 0, 0, 0},
+				{0, 0, 0, 0, 0, 3, 0, 0, 0},
+				{0, 0, 0, 0, 0, 0, 0, 0, 0}
+		};
+		SudokuBoard boardAfterUnfill = new SudokuBoard(endValues);
+		assertThat(board, is(boardAfterUnfill));
 	}
 
 }

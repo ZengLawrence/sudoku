@@ -4,7 +4,6 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 final class SudokuBoard {
 
@@ -48,6 +47,16 @@ final class SudokuBoard {
 	void fill(Coordinate coord, int val) {
 		values[coord.x()][coord.y()] = val;
 		freeCount--;
+	}
+	
+	/**
+	 * Change a cell on board to free space.
+	 * 
+	 * @param coord Coordinate of the cell
+	 */
+	void unfill(Coordinate coord) {
+		values[coord.x()][coord.y()] = FREE_CELL;
+		freeCount++;
 	}
 	
 	/**
