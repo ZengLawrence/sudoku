@@ -1,8 +1,6 @@
 package game;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.hamcrest.MatcherAssert.assertThat; 
-import static org.hamcrest.Matchers.*;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -92,7 +90,7 @@ class SudokuBoardTest {
 				{0, 0, 0, 0, 0, 0, 0, 0, 0}
 		};
 		SudokuBoard boardAfterFill = new SudokuBoard(endValues);
-		assertThat(board, is(boardAfterFill));
+		assertEquals(boardAfterFill, board);
 	}
 
 	@Test
@@ -128,7 +126,7 @@ class SudokuBoardTest {
 				{0, 0, 0, 0, 0, 0, 0, 0, 0}
 		};
 		SudokuBoard boardAfterUnfill = new SudokuBoard(endValues);
-		assertThat(board, is(boardAfterUnfill));
+		assertEquals(boardAfterUnfill, board);
 	}
 
 }
