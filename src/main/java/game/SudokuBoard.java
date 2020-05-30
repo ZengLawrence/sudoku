@@ -50,6 +50,11 @@ final class SudokuBoard {
 		return freeCount == 0;
 	}
 	
+	/**
+	 * Pretty print board in text.
+	 * 
+	 * @param out
+	 */
 	void print(PrintStream out) {
 		for (int i = 0; i < DIMENSION; i++) {
 			if (i % 3 == 0) {
