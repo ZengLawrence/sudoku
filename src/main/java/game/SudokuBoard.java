@@ -4,24 +4,21 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.IntStream;
+import java.util.Objects;
 
 final class SudokuBoard {
 
 	private static final int DIMENSION = 9;
-	private static final int NCELLS = DIMENSION*DIMENSION;
 	
 	private static final int FREE_CELL = 0;
 	
 	private int[][] values;
 	private int freeCount;
-	private Coordinate[] moves;
 	
 	SudokuBoard(int[][] startValues) {
 		this.values = new int[DIMENSION][];
 		copy(startValues, values);
 		this.freeCount = freeCells(startValues);
-		this.moves = new Coordinate[NCELLS];
 	}
 	
 	private static void copy(int[][] source, int[][] dest) {
@@ -40,6 +37,17 @@ final class SudokuBoard {
 			}
 		}
 		return count;
+	}
+	
+	/**
+	 * Fill a cell on the board with a value i.e. 1 - 9.
+	 * 
+	 * @param coord Coordinate of the cell
+	 * @param val
+	 */
+	void fill(Coordinate coord, int val) {
+		values[coord.x()][coord.y()] = val;
+		freeCount--;
 	}
 	
 	/**
@@ -84,5 +92,36 @@ final class SudokuBoard {
 	private static void printLine(PrintStream out) {
 		out.println("-------------------------");
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + freeCount;
+		result = prime * result + Arrays.deepHashCode(values);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		SudokuBoard other = (SudokuBoard) obj;
+		if (freeCount != other.freeCount)
+			return false;
+		if (!Arrays.deepEquals(values, other.values))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "SudokuBoard [values=" + Arrays.deepToString(values) + ", freeCount=" + freeCount + "]";
+	}
+	
 	
 }
