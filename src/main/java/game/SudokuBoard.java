@@ -38,4 +38,12 @@ final class SudokuBoard {
 		return count;
 	}
 	
+	/**
+	 * 
+	 * @return <code>true</code> if board is completely filled.
+	 */
+	boolean isComplete() {
+		return false;
+	}
+	
 }
