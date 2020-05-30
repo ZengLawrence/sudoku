@@ -31,4 +31,10 @@ public abstract class Backtrack<I> {
 
 	protected abstract boolean isASolution(int[] a, int k, I input);
 
+	/**
+	 * Set finished flag to true.
+	 */
+	protected void finished() {
+		this.finished = true;
+	}
 }

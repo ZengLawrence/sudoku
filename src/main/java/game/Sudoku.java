@@ -31,8 +31,8 @@ public final class Sudoku extends Backtrack<SudokuBoard>{
 
 	@Override
 	protected void processSolution(int[] a, int k, SudokuBoard board) {
-		// TODO Auto-generated method stub
-		
+		board.print(System.out);
+		super.finished();
 	}
 
 	@Override
