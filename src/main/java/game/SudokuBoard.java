@@ -15,7 +15,7 @@ final class SudokuBoard {
 	
 	SudokuBoard(int[][] startValues) {
 		this.values = new int[DIMENSION][];
-		copy(values, startValues);
+		copy(startValues, values);
 		this.freeCount = freeCells(startValues);
 		this.moves = new Coordinate[NCELLS];
 	}
