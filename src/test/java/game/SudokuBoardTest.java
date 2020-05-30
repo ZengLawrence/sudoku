@@ -18,8 +18,8 @@ class SudokuBoardTest {
 	}
 
 	@Test
-	@DisplayName("finished?  has free space, return false")
-	void testIsGameFinished() {
+	@DisplayName("complete?  has free space i.e. 0, return false")
+	void testIsComplete() {
 		
 		int[][] startValues = {
 				{0, 1, 0, 0, 0, 0, 0, 0, 0},
@@ -35,6 +35,26 @@ class SudokuBoardTest {
 		};
 		SudokuBoard board = new SudokuBoard(startValues);
 		assertFalse(board.isComplete());
+	}
+
+	@Test
+	@DisplayName("complete?  no free space i.e. values 1 - 9, return true")
+	void testIsGameFinished2() {
+		
+		int[][] startValues = {
+				{1, 1, 1, 4, 5, 6, 6, 8, 9},
+				{1, 1, 1, 4, 5, 6, 6, 8, 9},
+				{1, 1, 1, 4, 5, 6, 6, 8, 9},
+				{1, 1, 1, 4, 5, 6, 6, 8, 9},
+				{1, 1, 1, 4, 5, 6, 6, 8, 9},
+				{1, 1, 1, 4, 5, 6, 6, 8, 9},
+				{1, 1, 1, 4, 5, 6, 6, 8, 9},
+				{1, 1, 1, 4, 5, 6, 6, 8, 9},
+				{1, 1, 1, 4, 5, 6, 6, 8, 9},
+				{1, 1, 1, 4, 5, 6, 6, 8, 9},
+		};
+		SudokuBoard board = new SudokuBoard(startValues);
+		assertTrue(board.isComplete());
 	}
 
 }

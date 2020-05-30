@@ -43,7 +43,7 @@ final class SudokuBoard {
 	 * @return <code>true</code> if board is completely filled.
 	 */
 	boolean isComplete() {
-		return false;
+		return freeCount == 0;
 	}
 	
 }
