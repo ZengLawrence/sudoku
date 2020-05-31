@@ -40,7 +40,8 @@ public final class Sudoku extends Backtrack<SudokuBoard>{
 
 	@Override
 	protected void makeMove(int[] a, int k, SudokuBoard board) {
-		board.fill(moves[k], a[k]);		
+		board.fill(moves[k], a[k]);
+		subscriber.moveMade(moves[k], a[k]);
 	}
 	
 	@Override

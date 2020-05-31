@@ -24,7 +24,9 @@ public final class SudokuCommand {
 				{0, 0, 0, 6, 2, 0, 0, 9, 3},
 				{0, 0, 4, 0, 0, 0, 0, 7, 0},
 		};
-		Sudoku.solve(new SudokuBoard(startValues), new PrintBoardToConsole());
+		StatsCollector statsCollector = new StatsCollector();
+		Sudoku.solve(new SudokuBoard(startValues), SudokuLifeCycle.concat(statsCollector, new PrintBoardToConsole()));
+		statsCollector.print(System.out);
 	}
 
 }
