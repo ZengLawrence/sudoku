@@ -25,8 +25,8 @@ public final class Sudoku extends Backtrack<SudokuBoard>{
 		Sudoku sudoku = new Sudoku(subscriber);
 		sudoku.boardInitialized(board);
 		int[] values = new int[SudokuBoard.NCELLS];
-		int step = 0;
-		sudoku.backtrack(values, step, board);
+		int level = 0;
+		sudoku.backtrack(values, level, board);
 	}
 	
 	private void boardInitialized(SudokuBoard board) {
