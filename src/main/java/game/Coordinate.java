@@ -20,6 +20,18 @@ final class Coordinate {
 		return y;
 	}
 
+	Row row() {
+		return new Row(x);
+	}
+	
+	Column column() {
+		return new Column(y);
+	}
+	
+	Sector sector() {
+		return Sector.sector(this);
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(x, y);

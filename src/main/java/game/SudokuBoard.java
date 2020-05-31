@@ -1,5 +1,7 @@
 package game;
 
+import static game.Sector.coordinatesIn;
+
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -94,7 +96,11 @@ final class SudokuBoard {
 		return l;
 	}
 	
-	List<Integer> valuesForCoordinates(List<Coordinate> coordinates) {
+	List<Integer> valuesIn(Sector sector) {
+		return valuesIn(coordinatesIn(sector));
+	}
+	
+	private List<Integer> valuesIn(List<Coordinate> coordinates) {
 		List<Integer> l = new ArrayList<>();
 		for (Coordinate coord : coordinates) {
 			int x = coord.x();

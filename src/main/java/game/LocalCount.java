@@ -3,8 +3,6 @@
  */
 package game;
 
-import static game.Sector.*;
-
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -20,9 +18,9 @@ final class LocalCount {
 	static Set<Integer> candidates(Coordinate coord, SudokuBoard board) {
 		boolean[] candidates = new boolean[SudokuBoard.DIMENSION + 1];
 		Arrays.fill(candidates, 1, candidates.length, true);
-		board.valuesIn(new Row(coord.x())).forEach(val -> candidates[val] = false);
-		board.valuesIn(new Column(coord.y())).forEach(val -> candidates[val] = false);
-		board.valuesForCoordinates(coordinatesIn(sector(coord))).forEach(val -> candidates[val] = false);
+		board.valuesIn(coord.row()).forEach(val -> candidates[val] = false);
+		board.valuesIn(coord.column()).forEach(val -> candidates[val] = false);
+		board.valuesIn(coord.sector()).forEach(val -> candidates[val] = false);
 		
 		Set<Integer> s = new HashSet<>();
 		for (int i = 0; i < candidates.length; i++) {
