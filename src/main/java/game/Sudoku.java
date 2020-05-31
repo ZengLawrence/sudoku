@@ -3,8 +3,6 @@
  */
 package game;
 
-import java.util.Optional;
-
 import algo.Backtrack;
 
 /**
@@ -14,15 +12,17 @@ import algo.Backtrack;
 public final class Sudoku extends Backtrack<SudokuBoard>{
 
 	private final Coordinate[] moves;
+	private final PruningStrategy pruningStrategy;
 	private final SudokuLifeCycle subscriber;
 	
-	private Sudoku(SudokuLifeCycle lifeCycleSubscriber) {
+	private Sudoku(PruningStrategy pruningStrategy, SudokuLifeCycle subscriber) {
 		moves = new Coordinate[SudokuBoard.NCELLS];
-		this.subscriber = lifeCycleSubscriber;
+		this.pruningStrategy = pruningStrategy;
+		this.subscriber = subscriber;
 	}
 
 	public static void solve(SudokuBoard board, SudokuLifeCycle subscriber) {
-		Sudoku sudoku = new Sudoku(subscriber);
+		Sudoku sudoku = new Sudoku(PruningStrategy.sequentialOrder(), subscriber);
 		sudoku.boardInitialized(board);
 		int[] values = new int[SudokuBoard.NCELLS];
 		int level = 0;
@@ -46,7 +46,7 @@ public final class Sudoku extends Backtrack<SudokuBoard>{
 	
 	@Override
 	protected int[] constructCandidates(int[] a, int k, SudokuBoard board) {
-		return nextSequare(board).map( coord -> {
+		return pruningStrategy.nextSquare(board).map( coord -> {
 			moves[k] = coord;
 			return possibleValues(coord, board);
 		}).orElse(new int[0]);
@@ -54,10 +54,6 @@ public final class Sudoku extends Backtrack<SudokuBoard>{
 
 	private int[] possibleValues(Coordinate nextSquare, SudokuBoard board) {
 		return LocalCount.candidates(nextSquare, board).stream().mapToInt(n -> n).toArray();
-	}
-
-	private Optional<Coordinate> nextSequare(SudokuBoard board) {
-		return board.emptySquares().stream().findFirst();
 	}
 
 	@Override
