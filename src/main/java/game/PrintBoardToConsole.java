@@ -1,6 +1,12 @@
 package game;
 
-final class ConsolePrinter implements SudokuLifeCycle {
+/**
+ * Pretty print board to console.
+ * 
+ * @author Lawrence
+ *
+ */
+final class PrintBoardToConsole implements SudokuLifeCycle {
 
 	@Override
 	public void boardInitialized(SudokuBoard board) {
