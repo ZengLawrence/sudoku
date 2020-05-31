@@ -14,18 +14,23 @@ import algo.Backtrack;
 public final class Sudoku extends Backtrack<SudokuBoard>{
 
 	private final Coordinate[] moves;
+	private final SudokuLifeCycle subscriber;
 	
-	public Sudoku() {
+	private Sudoku(SudokuLifeCycle lifeCycleSubscriber) {
 		moves = new Coordinate[SudokuBoard.NCELLS];
+		this.subscriber = lifeCycleSubscriber;
 	}
 
-	public static void solve(SudokuBoard board) {
-		Sudoku sudoku = new Sudoku();
-		System.out.println("Initial Board:");
-		board.print(System.out);
+	public static void solve(SudokuBoard board, SudokuLifeCycle subscriber) {
+		Sudoku sudoku = new Sudoku(subscriber);
+		sudoku.boardInitialized(board);
 		int[] values = new int[SudokuBoard.NCELLS];
 		int step = 0;
 		sudoku.backtrack(values, step, board);
+	}
+	
+	private void boardInitialized(SudokuBoard board) {
+		this.subscriber.boardInitialized(board);
 	}
 	
 	@Override
@@ -59,8 +64,7 @@ public final class Sudoku extends Backtrack<SudokuBoard>{
 
 	@Override
 	protected void processSolution(int[] a, int k, SudokuBoard board) {
-		System.out.println("Solution:");
-		board.print(System.out);
+		this.subscriber.solutionFound(board);
 		super.finished();
 	}
 
