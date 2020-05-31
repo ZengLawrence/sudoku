@@ -3,6 +3,8 @@
  */
 package game;
 
+import java.util.Optional;
+
 import algo.Backtrack;
 
 /**
@@ -29,8 +31,22 @@ public final class Sudoku extends Backtrack<SudokuBoard>{
 	
 	@Override
 	protected int[] constructCandidates(int[] a, int k, SudokuBoard board) {
+		Optional<Coordinate> nextSquare = nextSequare(board);
+		if (nextSquare.isPresent()) {
+			moves[k] = nextSquare.get();
+			return possibleValues(moves[k], board);
+		} else {
+			return new int[0];
+		}
+	}
+
+	private int[] possibleValues(Coordinate nextSquare, SudokuBoard board) {
 		// TODO Auto-generated method stub
-		// add to moves before returning
+		return null;
+	}
+
+	private Optional<Coordinate> nextSequare(SudokuBoard board) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
