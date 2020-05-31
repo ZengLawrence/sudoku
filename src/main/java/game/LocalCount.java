@@ -20,8 +20,8 @@ final class LocalCount {
 	static Set<Integer> candidates(Coordinate coord, SudokuBoard board) {
 		boolean[] candidates = new boolean[SudokuBoard.DIMENSION + 1];
 		Arrays.fill(candidates, 1, candidates.length, true);
-		board.valuesInRow(coord.x()).forEach(val -> candidates[val] = false);
-		board.valuesInColumn(coord.y()).forEach(val -> candidates[val] = false);
+		board.valuesIn(new Row(coord.x())).forEach(val -> candidates[val] = false);
+		board.valuesIn(new Column(coord.y())).forEach(val -> candidates[val] = false);
 		board.valuesForCoordinates(coordinatesIn(sector(coord))).forEach(val -> candidates[val] = false);
 		
 		Set<Integer> s = new HashSet<>();

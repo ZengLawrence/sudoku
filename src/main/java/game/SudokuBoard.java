@@ -72,7 +72,8 @@ final class SudokuBoard {
 		return emptySquares;
 	}
 	
-	List<Integer> valuesInRow(int x) {
+	List<Integer> valuesIn(Row row) {
+		int x = row.x();
 		List<Integer> l = new ArrayList<>();
 		for (int val : values[x]) {
 			if (val > 0) {
@@ -82,7 +83,8 @@ final class SudokuBoard {
 		return l;
 	}
 	
-	List<Integer> valuesInColumn(int y) {
+	List<Integer> valuesIn(Column col) {
+		int y = col.y();
 		List<Integer> l = new ArrayList<>();
 		for (int x = 0; x < DIMENSION; x++) {
 			if (values[x][y] > 0) {
