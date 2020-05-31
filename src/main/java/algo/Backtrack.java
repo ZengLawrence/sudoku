@@ -34,7 +34,7 @@ public abstract class Backtrack<I> {
 	/**
 	 * Set finished flag to true.
 	 */
-	protected void finished() {
+	protected void finish() {
 		this.finished = true;
 	}
 }

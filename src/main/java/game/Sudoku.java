@@ -66,7 +66,7 @@ public final class Sudoku extends Backtrack<SudokuBoard>{
 	@Override
 	protected void processSolution(int[] a, int k, SudokuBoard board) {
 		this.subscriber.solutionFound(board);
-		super.finished();
+		super.finish();
 	}
 
 	@Override
