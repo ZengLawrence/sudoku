@@ -24,8 +24,13 @@ public final class SudokuCommand {
 				{0, 0, 0, 6, 2, 0, 0, 9, 3},
 				{0, 0, 4, 0, 0, 0, 0, 7, 0},
 		};
+		solve(new SudokuBoard(startValues), PruningStrategy.sequentialOrder());
+		solve(new SudokuBoard(startValues), PruningStrategy.mostConstrained());
+	}
+
+	private static void solve(SudokuBoard board, PruningStrategy sequentialOrder) {
 		StatsCollector statsCollector = new StatsCollector();
-		Sudoku.solve(new SudokuBoard(startValues), SudokuLifeCycle.concat(statsCollector, new PrintBoardToConsole()));
+		Sudoku.solve(board, PruningStrategy.sequentialOrder(), SudokuLifeCycle.concat(statsCollector, new PrintBoardToConsole()));
 		statsCollector.print(System.out);
 	}
 

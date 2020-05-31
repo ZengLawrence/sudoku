@@ -21,8 +21,8 @@ public final class Sudoku extends Backtrack<SudokuBoard>{
 		this.subscriber = subscriber;
 	}
 
-	public static void solve(SudokuBoard board, SudokuLifeCycle subscriber) {
-		Sudoku sudoku = new Sudoku(PruningStrategy.sequentialOrder(), subscriber);
+	public static void solve(SudokuBoard board, PruningStrategy pruningStrategy, SudokuLifeCycle subscriber) {
+		Sudoku sudoku = new Sudoku(pruningStrategy, subscriber);
 		sudoku.boardInitialized(board);
 		int[] values = new int[SudokuBoard.NCELLS];
 		int level = 0;

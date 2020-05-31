@@ -3,22 +3,34 @@
  */
 package game;
 
+import static game.LocalCount.*;
+
 import java.util.Optional;
 
 /**
- * Search pruning strategy for Sudoku.  By default, using sequential for picking the next square to fill.
+ * Search pruning strategy for Sudoku.
  * 
  * @author Lawrence
  *
  */
 public interface PruningStrategy {
 	
-	default Optional<Coordinate> nextSquare(SudokuBoard board) {
-		return board.emptySquares().stream().findFirst();
-	};
+	Optional<Coordinate> nextSquare(SudokuBoard board);
 	
 	static PruningStrategy sequentialOrder() {
-		return new PruningStrategy() {
-		};
+		return board -> board.emptySquares().stream().findFirst();
 	};
+	
+	static PruningStrategy mostConstrained() {
+		return board -> {
+			return localCounts(board.emptySquares(), board)
+				.stream()
+				.sorted(LocalCount::sortByCandidateTotal)
+				.findFirst()
+				.map(LocalCount::coordinate);
+		};
+	}
+
+
+
 }
