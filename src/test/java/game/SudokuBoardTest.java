@@ -31,7 +31,6 @@ class SudokuBoardTest {
 				{0, 0, 0, 0, 0, 0, 0, 0, 0},
 				{0, 0, 0, 0, 0, 0, 0, 0, 0},
 				{0, 0, 0, 0, 0, 3, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0}
 		};
 		SudokuBoard board = new SudokuBoard(startValues);
 		assertFalse(board.isComplete());
@@ -42,7 +41,6 @@ class SudokuBoardTest {
 	void testIsGameFinished2() {
 		
 		int[][] startValues = {
-				{1, 1, 1, 4, 5, 6, 6, 8, 9},
 				{1, 1, 1, 4, 5, 6, 6, 8, 9},
 				{1, 1, 1, 4, 5, 6, 6, 8, 9},
 				{1, 1, 1, 4, 5, 6, 6, 8, 9},
@@ -71,7 +69,6 @@ class SudokuBoardTest {
 				{0, 0, 0, 0, 0, 0, 0, 0, 0},
 				{0, 0, 0, 0, 0, 0, 0, 0, 0},
 				{0, 0, 0, 0, 0, 3, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0}
 		};
 		SudokuBoard board = new SudokuBoard(startValues);
 		
@@ -87,7 +84,6 @@ class SudokuBoardTest {
 				{0, 0, 0, 0, 0, 0, 0, 0, 0},
 				{0, 0, 0, 0, 0, 0, 0, 0, 0},
 				{0, 0, 0, 0, 0, 3, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0}
 		};
 		SudokuBoard boardAfterFill = new SudokuBoard(endValues);
 		assertEquals(boardAfterFill, board);
