@@ -19,6 +19,15 @@ public final class Sudoku extends Backtrack<SudokuBoard>{
 		moves = new Coordinate[SudokuBoard.NCELLS];
 	}
 
+	public static void solve(SudokuBoard board) {
+		Sudoku sudoku = new Sudoku();
+		System.out.println("Initial Board:");
+		board.print(System.out);
+		int[] values = new int[SudokuBoard.NCELLS];
+		int step = 0;
+		sudoku.backtrack(values, step, board);
+	}
+	
 	@Override
 	protected void unmakeMove(int[] a, int k, SudokuBoard board) {
 		board.unfill(moves[k]);
@@ -41,8 +50,7 @@ public final class Sudoku extends Backtrack<SudokuBoard>{
 	}
 
 	private int[] possibleValues(Coordinate nextSquare, SudokuBoard board) {
-		// TODO Auto-generated method stub
-		return null;
+		return LocalCount.candidates(nextSquare, board).stream().mapToInt(n -> n).toArray();
 	}
 
 	private Optional<Coordinate> nextSequare(SudokuBoard board) {
@@ -51,6 +59,7 @@ public final class Sudoku extends Backtrack<SudokuBoard>{
 
 	@Override
 	protected void processSolution(int[] a, int k, SudokuBoard board) {
+		System.out.println("Solution:");
 		board.print(System.out);
 		super.finished();
 	}
