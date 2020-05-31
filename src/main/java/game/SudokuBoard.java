@@ -60,6 +60,18 @@ final class SudokuBoard {
 		freeCount++;
 	}
 	
+	List<Coordinate> emptySquares() {
+		List<Coordinate> emptySquares = new ArrayList<>();
+		for (int i = 0; i < DIMENSION; i++) {
+			for (int j = 0; j < DIMENSION; j++) {
+				if (values[i][j] == FREE_CELL) {
+					emptySquares.add(new Coordinate(i, j));
+				}
+			}
+		}
+		return emptySquares;
+	}
+	
 	/**
 	 * 
 	 * @return <code>true</code> if board is completely filled.

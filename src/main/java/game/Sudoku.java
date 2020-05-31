@@ -46,8 +46,7 @@ public final class Sudoku extends Backtrack<SudokuBoard>{
 	}
 
 	private Optional<Coordinate> nextSequare(SudokuBoard board) {
-		// TODO Auto-generated method stub
-		return null;
+		return board.emptySquares().stream().findFirst();
 	}
 
 	@Override
