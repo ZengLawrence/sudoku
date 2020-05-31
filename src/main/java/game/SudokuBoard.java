@@ -120,6 +120,10 @@ final class SudokuBoard {
 		return freeCount == 0;
 	}
 	
+	int freeCount() {
+		return freeCount;
+	}
+
 	/**
 	 * Pretty print board in text.
 	 * 

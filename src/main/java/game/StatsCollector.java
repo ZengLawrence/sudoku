@@ -18,10 +18,12 @@ final class StatsCollector implements SudokuLifeCycle {
 	private LocalDateTime startTime;
 	private Duration processDuration;
 	private long numbMove;
+	private int freeSquareCount;
 	
 	@Override
 	public void boardInitialized(SudokuBoard board) {
 		startTime = LocalDateTime.now();
+		freeSquareCount = board.freeCount();
 	}
 
 	@Override
@@ -36,6 +38,7 @@ final class StatsCollector implements SudokuLifeCycle {
 
 	void print(PrintStream out) {
 		out.println("Time taken: " + processDuration);
+		out.println("Number of free squares: " + freeSquareCount);
 		out.println("Moves made: " + numbMove);
 	}
 }

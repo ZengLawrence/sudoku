@@ -28,7 +28,7 @@ public final class SudokuCommand {
 		solve(new SudokuBoard(startValues), PruningStrategy.mostConstrained());
 	}
 
-	private static void solve(SudokuBoard board, PruningStrategy sequentialOrder) {
+	private static void solve(SudokuBoard board, PruningStrategy pruningStrategy) {
 		StatsCollector statsCollector = new StatsCollector();
 		Sudoku.solve(board, PruningStrategy.sequentialOrder(), SudokuLifeCycle.concat(statsCollector, new PrintBoardToConsole()));
 		statsCollector.print(System.out);
