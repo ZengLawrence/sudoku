@@ -7,7 +7,7 @@ import java.util.List;
 
 final class SudokuBoard {
 
-	private static final int DIMENSION = 9;
+	static final int DIMENSION = 9;
 	static final int NCELLS = DIMENSION*DIMENSION;
 	
 	private static final int FREE_CELL = 0;
@@ -70,6 +70,38 @@ final class SudokuBoard {
 			}
 		}
 		return emptySquares;
+	}
+	
+	List<Integer> valuesInRow(int x) {
+		List<Integer> l = new ArrayList<>();
+		for (int val : values[x]) {
+			if (val > 0) {
+				l.add(val);
+			}
+		}
+		return l;
+	}
+	
+	List<Integer> valuesInColumn(int y) {
+		List<Integer> l = new ArrayList<>();
+		for (int x = 0; x < DIMENSION; x++) {
+			if (values[x][y] > 0) {
+				l.add(values[x][y]);
+			}
+		}
+		return l;
+	}
+	
+	List<Integer> valuesForCoordinates(List<Coordinate> coordinates) {
+		List<Integer> l = new ArrayList<>();
+		for (Coordinate coord : coordinates) {
+			int x = coord.x();
+			int y = coord.y();
+			if (values[x][y] > 0) {
+				l.add(values[x][y]);
+			}
+		}
+		return l;
 	}
 	
 	/**
