@@ -13,4 +13,4 @@ Run main class 'SudokuCommand'.
 
 Output of 'SudokuCommand':
 
-![Sample output of SudokuCommand](sample_output.png)
+![Sample output of SudokuCommand](image/sample_output.png?raw=true)
