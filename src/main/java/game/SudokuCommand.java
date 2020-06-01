@@ -30,7 +30,8 @@ public final class SudokuCommand {
 
 	private static void solve(SudokuBoard board, PruningStrategy pruningStrategy) {
 		StatsCollector statsCollector = new StatsCollector();
-		Sudoku.solve(board, pruningStrategy, SudokuLifeCycle.concat(statsCollector, new PrintBoardToConsole(), new PrintMovesToConsole()));
+		// use PrintMovesToConsole to print moves
+		Sudoku.solve(board, pruningStrategy, SudokuLifeCycle.concat(statsCollector, new PrintBoardToConsole()));
 		statsCollector.print(System.out);
 	}
 
