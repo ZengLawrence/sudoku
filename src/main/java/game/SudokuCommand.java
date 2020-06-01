@@ -24,7 +24,11 @@ public final class SudokuCommand {
 				{0, 0, 0, 6, 2, 0, 0, 9, 3},
 				{0, 0, 4, 0, 0, 0, 0, 7, 0},
 		};
+		System.out.println("Pruing strategy: sequential order to pick next square");
 		solve(new SudokuBoard(startValues), PruningStrategy.sequentialOrder());
+		System.out.println();
+		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++");
+		System.out.println("Pruing strategy: most constrained to pick next square i.e. fewest candidates");
 		solve(new SudokuBoard(startValues), PruningStrategy.mostConstrained());
 	}
 
