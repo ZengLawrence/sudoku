@@ -62,7 +62,11 @@ final class SudokuBoard {
 		freeCount++;
 	}
 	
-	List<Coordinate> emptySquares() {
+	/**
+	 * 
+	 * @return Collection of free squares that do not have value placed in them.
+	 */
+	List<Coordinate> freeSquares() {
 		List<Coordinate> emptySquares = new ArrayList<>();
 		for (int i = 0; i < DIMENSION; i++) {
 			for (int j = 0; j < DIMENSION; j++) {

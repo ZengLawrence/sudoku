@@ -18,12 +18,12 @@ public interface NextSquareStrategy {
 	Optional<Coordinate> nextSquare(SudokuBoard board);
 	
 	static NextSquareStrategy sequentialOrder() {
-		return board -> board.emptySquares().stream().findFirst();
+		return board -> board.freeSquares().stream().findFirst();
 	};
 	
 	static NextSquareStrategy mostConstrained() {
 		return board -> {
-			return localCounts(board.emptySquares(), board)
+			return localCounts(board.freeSquares(), board)
 				.stream()
 				.sorted(LocalCount::sortByCandidateTotal)
 				.findFirst()
