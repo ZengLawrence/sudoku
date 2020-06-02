@@ -15,6 +15,10 @@ public interface CandidateStrategy {
 
 	Set<Integer> candidates(Coordinate coord, SudokuBoard board);
 	
+	/**
+	 * 
+	 * @return Candidate values for a free squares after removing values already placed in its row, column or sector. 
+	 */
 	static CandidateStrategy localCount() {
 		return LocalCount::candidates;
 	}
