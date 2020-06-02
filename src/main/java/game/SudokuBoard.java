@@ -10,9 +10,9 @@ import java.util.List;
 final class SudokuBoard {
 
 	static final int DIMENSION = 9;
-	static final int NCELLS = DIMENSION*DIMENSION;
+	static final int NSQUARES = DIMENSION*DIMENSION;
 	
-	private static final int FREE_CELL = 0;
+	private static final int FREE_SQUARE = 0;
 	
 	private int[][] values;
 	private int freeCount;
@@ -20,7 +20,7 @@ final class SudokuBoard {
 	SudokuBoard(int[][] startValues) {
 		this.values = new int[DIMENSION][];
 		copy(startValues, values);
-		this.freeCount = freeCells(startValues);
+		this.freeCount = freeSquareCount(startValues);
 	}
 	
 	private static void copy(int[][] source, int[][] dest) {
@@ -29,11 +29,11 @@ final class SudokuBoard {
 		}
 	}
 	
-	private static int freeCells(int[][] values) {
+	private static int freeSquareCount(int[][] values) {
 		int count = 0;
 		for (int i = 0; i < DIMENSION; i++) {
 			for (int j = 0; j < DIMENSION; j++) {
-				if (values[i][j] == FREE_CELL) {
+				if (values[i][j] == FREE_SQUARE) {
 					count++;
 				}
 			}
@@ -42,9 +42,9 @@ final class SudokuBoard {
 	}
 	
 	/**
-	 * Fill a cell on the board with a value i.e. 1 - 9.
+	 * Fill a square on the board with a value i.e. 1 - 9.
 	 * 
-	 * @param coord Coordinate of the cell
+	 * @param coord Coordinate of the square
 	 * @param val
 	 */
 	void fill(Coordinate coord, int val) {
@@ -53,12 +53,12 @@ final class SudokuBoard {
 	}
 	
 	/**
-	 * Change a cell on board to free space.
+	 * Change a square on board to free space.
 	 * 
-	 * @param coord Coordinate of the cell
+	 * @param coord Coordinate of the square
 	 */
 	void unfill(Coordinate coord) {
-		values[coord.x()][coord.y()] = FREE_CELL;
+		values[coord.x()][coord.y()] = FREE_SQUARE;
 		freeCount++;
 	}
 	
@@ -70,7 +70,7 @@ final class SudokuBoard {
 		List<Coordinate> freeSquares = new ArrayList<>();
 		for (int i = 0; i < DIMENSION; i++) {
 			for (int j = 0; j < DIMENSION; j++) {
-				if (values[i][j] == FREE_CELL) {
+				if (values[i][j] == FREE_SQUARE) {
 					freeSquares.add(new Coordinate(i, j));
 				}
 			}
