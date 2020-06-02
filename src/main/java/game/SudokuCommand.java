@@ -34,11 +34,13 @@ public final class SudokuCommand {
 		};
 		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++");
 		System.out.println("Pruing strategy: sequential order to pick next square");
-		solve(new SudokuBoard(startValues), PruningStrategy.sequentialOrder());
+		solve(new SudokuBoard(startValues), 
+				PruningStrategy.of(NextSquareStrategy.sequentialOrder()));
 		System.out.println();
 		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++");
 		System.out.println("Pruing strategy: most constrained to pick next square i.e. fewest candidates");
-		solve(new SudokuBoard(startValues), PruningStrategy.mostConstrained());
+		solve(new SudokuBoard(startValues), 
+				PruningStrategy.of(NextSquareStrategy.mostConstrained()));
 	}
 	
 	private static void solveHardComplexityPuzzle() {
@@ -56,7 +58,7 @@ public final class SudokuCommand {
 		};
 		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++");
 		System.out.println("Pruing strategy: most constrained to pick next square i.e. fewest candidates");
-		solve(new SudokuBoard(startValues), PruningStrategy.mostConstrained());
+		solve(new SudokuBoard(startValues), PruningStrategy.of(NextSquareStrategy.mostConstrained()));
 	}
 
 	private static void solve(SudokuBoard board, PruningStrategy pruningStrategy) {

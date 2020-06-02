@@ -3,8 +3,6 @@
  */
 package game;
 
-import static game.LocalCount.*;
-
 import java.util.Optional;
 
 /**
@@ -13,24 +11,21 @@ import java.util.Optional;
  * @author Lawrence
  *
  */
-public interface PruningStrategy {
+class PruningStrategy implements NextSquareStrategy {
+
+	static PruningStrategy of(NextSquareStrategy nextSquareStrategy) {
+		return new PruningStrategy(nextSquareStrategy);
+	}
 	
-	Optional<Coordinate> nextSquare(SudokuBoard board);
+	private final NextSquareStrategy nextSquareStrategy;
 	
-	static PruningStrategy sequentialOrder() {
-		return board -> board.emptySquares().stream().findFirst();
-	};
-	
-	static PruningStrategy mostConstrained() {
-		return board -> {
-			return localCounts(board.emptySquares(), board)
-				.stream()
-				.sorted(LocalCount::sortByCandidateTotal)
-				.findFirst()
-				.map(LocalCount::coordinate);
-		};
+	private PruningStrategy(NextSquareStrategy nextSquareStrategy) {
+		this.nextSquareStrategy = nextSquareStrategy;
 	}
 
-
-
+	@Override
+	public Optional<Coordinate> nextSquare(SudokuBoard board) {
+		return nextSquareStrategy.nextSquare(board);
+	}
+	
 }
