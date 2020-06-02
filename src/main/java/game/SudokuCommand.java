@@ -14,8 +14,10 @@ public final class SudokuCommand {
 	 */
 	public static void main(String[] args) {
 		solveMediumComplexityPuzzle();
+		
 		System.out.println();
 		System.out.println();
+		
 		solveHardComplexityPuzzle();
 	}
 
@@ -33,14 +35,20 @@ public final class SudokuCommand {
 				{0, 0, 4, 0, 0, 0, 0, 7, 0},
 		};
 		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++");
-		System.out.println("Pruing strategy: sequential order to pick next square");
+		System.out.println("Pruning strategies:");
+		System.out.println("Next square: sequential order to pick next square");
+		System.out.println("Candidate values: local count for any remaing values");
 		solve(new SudokuBoard(startValues), 
-				PruningStrategy.of(NextSquareStrategy.sequentialOrder()));
+				PruningStrategy.of(NextSquareStrategy.sequentialOrder(), CandidateStrategy.localCount()));
+		
 		System.out.println();
+		
 		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++");
-		System.out.println("Pruing strategy: most constrained to pick next square i.e. fewest candidates");
+		System.out.println("Pruning strategies:");
+		System.out.println("Next square: most constrained to pick next square i.e. fewest candidates");
+		System.out.println("Candidate values: local count for any remaning values");
 		solve(new SudokuBoard(startValues), 
-				PruningStrategy.of(NextSquareStrategy.mostConstrained()));
+				PruningStrategy.of(NextSquareStrategy.mostConstrained(), CandidateStrategy.localCount()));
 	}
 	
 	private static void solveHardComplexityPuzzle() {
@@ -57,8 +65,11 @@ public final class SudokuCommand {
 				{0, 5, 0, 0, 0, 0, 6, 0, 0},
 		};
 		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++");
-		System.out.println("Pruing strategy: most constrained to pick next square i.e. fewest candidates");
-		solve(new SudokuBoard(startValues), PruningStrategy.of(NextSquareStrategy.mostConstrained()));
+		System.out.println("Pruning strategies:");
+		System.out.println("Next square: most constrained to pick next square i.e. fewest candidates");
+		System.out.println("Candidate values: local count for any remaning values");
+		solve(new SudokuBoard(startValues), 
+				PruningStrategy.of(NextSquareStrategy.mostConstrained(), CandidateStrategy.localCount()));
 	}
 
 	private static void solve(SudokuBoard board, PruningStrategy pruningStrategy) {

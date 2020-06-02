@@ -53,7 +53,7 @@ public final class Sudoku extends Backtrack<SudokuBoard>{
 	}
 
 	private int[] possibleValues(Coordinate nextSquare, SudokuBoard board) {
-		return LocalCount.candidates(nextSquare, board).stream().mapToInt(n -> n).toArray();
+		return pruningStrategy.candidates(nextSquare, board).stream().mapToInt(n -> n).toArray();
 	}
 
 	@Override
