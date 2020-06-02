@@ -13,6 +13,11 @@ public final class SudokuCommand {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		solveMediumComplexityPuzzle();
+	}
+
+	private static void solveMediumComplexityPuzzle() {
+		System.out.println("Medium complexity puzzle");
 		int[][] startValues = {
 				{1, 0, 8, 5, 0, 9, 0, 0, 6},
 				{6, 4, 0, 0, 0, 0, 0, 1, 0},
@@ -31,7 +36,7 @@ public final class SudokuCommand {
 		System.out.println("Pruing strategy: most constrained to pick next square i.e. fewest candidates");
 		solve(new SudokuBoard(startValues), PruningStrategy.mostConstrained());
 	}
-
+	
 	private static void solve(SudokuBoard board, PruningStrategy pruningStrategy) {
 		StatsCollector statsCollector = new StatsCollector();
 		// use PrintMovesToConsole to print moves
