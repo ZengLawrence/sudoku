@@ -14,6 +14,9 @@ public final class SudokuCommand {
 	 */
 	public static void main(String[] args) {
 		solveMediumComplexityPuzzle();
+		System.out.println();
+		System.out.println();
+		solveHardComplexityPuzzle();
 	}
 
 	private static void solveMediumComplexityPuzzle() {
@@ -29,6 +32,7 @@ public final class SudokuCommand {
 				{0, 0, 0, 6, 2, 0, 0, 9, 3},
 				{0, 0, 4, 0, 0, 0, 0, 7, 0},
 		};
+		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++");
 		System.out.println("Pruing strategy: sequential order to pick next square");
 		solve(new SudokuBoard(startValues), PruningStrategy.sequentialOrder());
 		System.out.println();
@@ -37,6 +41,24 @@ public final class SudokuCommand {
 		solve(new SudokuBoard(startValues), PruningStrategy.mostConstrained());
 	}
 	
+	private static void solveHardComplexityPuzzle() {
+		System.out.println("Hard complexity puzzle");
+		int[][] startValues = {
+				{0, 0, 0, 0, 0, 0, 0, 1, 2},
+				{0, 0, 0, 0, 3, 5, 0, 0, 0},
+				{0, 0, 0, 6, 0, 0, 0, 7, 0},
+				{7, 0, 0, 0, 0, 0, 3, 0, 0},
+				{0, 0, 0, 4, 0, 0, 8, 0, 0},
+				{1, 0, 0, 0, 0, 0, 0, 0, 0},
+				{0, 0, 0, 1, 2, 0, 0, 0, 0},
+				{0, 8, 0, 0, 0, 0, 0, 4, 0},
+				{0, 5, 0, 0, 0, 0, 6, 0, 0},
+		};
+		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++");
+		System.out.println("Pruing strategy: most constrained to pick next square i.e. fewest candidates");
+		solve(new SudokuBoard(startValues), PruningStrategy.mostConstrained());
+	}
+
 	private static void solve(SudokuBoard board, PruningStrategy pruningStrategy) {
 		StatsCollector statsCollector = new StatsCollector();
 		// use PrintMovesToConsole to print moves
