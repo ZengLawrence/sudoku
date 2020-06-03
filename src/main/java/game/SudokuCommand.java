@@ -37,7 +37,7 @@ public final class SudokuCommand {
 		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++");
 		System.out.println("Pruning strategies:");
 		System.out.println("Next square: sequential order to pick next square");
-		System.out.println("Candidate values: local count for any remaing values");
+		System.out.println("Candidate values: local count for any remaining values");
 		solve(new SudokuBoard(startValues), 
 				PruningStrategy.of(NextSquareStrategy.sequentialOrder(), CandidateStrategy.localCount()));
 		
@@ -46,7 +46,7 @@ public final class SudokuCommand {
 		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++");
 		System.out.println("Pruning strategies:");
 		System.out.println("Next square: most constrained to pick next square i.e. fewest candidates");
-		System.out.println("Candidate values: local count for any remaning values");
+		System.out.println("Candidate values: local count for any remaining values");
 		solve(new SudokuBoard(startValues), 
 				PruningStrategy.of(NextSquareStrategy.mostConstrained(), CandidateStrategy.localCount()));
 	}
@@ -67,9 +67,18 @@ public final class SudokuCommand {
 		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++");
 		System.out.println("Pruning strategies:");
 		System.out.println("Next square: most constrained to pick next square i.e. fewest candidates");
-		System.out.println("Candidate values: local count for any remaning values");
+		System.out.println("Candidate values: local count for any remaining values");
 		solve(new SudokuBoard(startValues), 
 				PruningStrategy.of(NextSquareStrategy.mostConstrained(), CandidateStrategy.localCount()));
+		
+		System.out.println();
+		
+		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++");
+		System.out.println("Pruning strategies:");
+		System.out.println("Next square: most constrained to pick next square i.e. fewest candidates");
+		System.out.println("Candidate values: look ahead for any remaining values that may not block filling other free squares");
+		solve(new SudokuBoard(startValues), 
+				PruningStrategy.of(NextSquareStrategy.mostConstrained(), CandidateStrategy.lookAhead()));
 	}
 
 	private static void solve(SudokuBoard board, PruningStrategy pruningStrategy) {

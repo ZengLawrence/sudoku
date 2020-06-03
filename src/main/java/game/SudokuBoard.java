@@ -78,6 +78,40 @@ final class SudokuBoard {
 		return freeSquares;
 	}
 	
+	List<Coordinate> freeSquaresIn(Row row) {
+		List<Coordinate> freeSquares = new ArrayList<>();
+		int x = row.x();
+		for (int y = 0; y < DIMENSION; y++) {
+			if (values[x][y] == FREE_SQUARE) {
+				freeSquares.add(new Coordinate(x, y));
+			}
+		}
+		return freeSquares;
+	}
+	
+	List<Coordinate> freeSquaresIn(Column col) {
+		int y = col.y();
+		List<Coordinate> freeSquares = new ArrayList<>();
+		for (int x = 0; x < DIMENSION; x++) {
+			if (values[x][y] == FREE_SQUARE) {
+				freeSquares.add(new Coordinate(x, y));
+			}
+		}
+		return freeSquares;
+	}
+	
+	List<Coordinate> freeSquaresIn(Sector sector) {
+		List<Coordinate> freeSquares = new ArrayList<>();
+		for (Coordinate sq : coordinatesIn(sector)) {
+			int x = sq.x();
+			int y = sq.y();
+			if (values[x][y] == FREE_SQUARE) {
+				freeSquares.add(new Coordinate(x, y));
+			}
+		}
+		return freeSquares;
+	}
+	
 	List<Integer> valuesIn(Row row) {
 		int x = row.x();
 		List<Integer> l = new ArrayList<>();

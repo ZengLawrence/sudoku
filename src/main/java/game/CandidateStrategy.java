@@ -23,4 +23,8 @@ public interface CandidateStrategy {
 		return LocalCount::candidates;
 	}
 	
+	static CandidateStrategy lookAhead() {
+		return LookAhead::candidates;
+	}
+	
 }

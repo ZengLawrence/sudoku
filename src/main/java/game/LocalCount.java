@@ -10,7 +10,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- * From a coordinate, Look through row, column and sector to find candidate values.
+ * Find candidates from a square after removing values already placed in its row, column or sector.
  * 
  * @author Lawrence
  *
