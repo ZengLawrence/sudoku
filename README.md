@@ -50,7 +50,7 @@ Next Square      | Candidate Suggestion | Moves Required | Processing Time |
 Most Constrained | Local Count          | 10,373         | 1,509ms         |
 Most Constrained | Look Ahead           |    440         |   191ms         |
 
->:information_source:**Take-Home Lesson**:  "Do not optimize prematurely."  Modern hardware is very fast, which simple strategy would be good enough.  Most of puzzle can be solved under 1 second. Even for the hardest one, it takes about 1.5 second with simple pruning strategies on *puny* modern hardware (Intel Atom).
+>:information_source:**Take-Home Lesson**:  "Do not optimize prematurely."  Modern hardware is very fast, which simple strategy would be good enough.  Most of puzzle can be solved under 1 second. Even for the hardest one, it takes about 1.5 second with simple pruning strategies on *puny* modern hardware (Intel Atom).  On any respectable laptop or desktop CPU, it will be 2 or 3 times faster.  That means even for hard puzzles, it would be solved under a second.
 
 ## Source Code Structures
 ### Packages
