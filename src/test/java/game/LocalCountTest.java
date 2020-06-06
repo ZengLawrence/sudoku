@@ -36,7 +36,7 @@ class LocalCountTest {
 		SudokuBoard board = new SudokuBoard(startValues);
 		
 		Set<Integer> expected = new HashSet<>(Arrays.asList(3, 6, 7));
-		assertEquals(expected, LocalCount.candidates(new Coordinate(1, 1), board));
+		assertEquals(expected, LocalCount.candidates(new Square(1, 1), board));
 	}
 
 }

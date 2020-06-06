@@ -17,12 +17,12 @@ import java.util.stream.Collectors;
  */
 final class LocalCount {
 
-	static Set<Integer> candidates(Coordinate coord, SudokuBoard board) {
+	static Set<Integer> candidates(Square square, SudokuBoard board) {
 		boolean[] candidates = new boolean[SudokuBoard.DIMENSION + 1];
 		Arrays.fill(candidates, 1, candidates.length, true);
-		board.valuesIn(coord.row()).forEach(val -> candidates[val] = false);
-		board.valuesIn(coord.column()).forEach(val -> candidates[val] = false);
-		board.valuesIn(coord.box()).forEach(val -> candidates[val] = false);
+		board.valuesIn(square.row()).forEach(val -> candidates[val] = false);
+		board.valuesIn(square.column()).forEach(val -> candidates[val] = false);
+		board.valuesIn(square.box()).forEach(val -> candidates[val] = false);
 		
 		Set<Integer> s = new HashSet<>();
 		for (int i = 0; i < candidates.length; i++) {
@@ -33,9 +33,9 @@ final class LocalCount {
 		return s;
 	}
 
-	static Collection<LocalCount> localCounts(Collection<Coordinate> squares, SudokuBoard board) {
+	static Collection<LocalCount> localCounts(Collection<Square> squares, SudokuBoard board) {
 		return squares.stream()
-				.map( coord -> new LocalCount(coord, candidates(coord, board)))
+				.map( square -> new LocalCount(square, candidates(square, board)))
 				.collect(Collectors.toList());
 	}
 	
@@ -43,16 +43,16 @@ final class LocalCount {
 		return 	Integer.compare(localCount1.candidateTotal(), localCount2.candidateTotal());
 	}
 
-	private final Coordinate coordinate;
+	private final Square square;
 	private final Set<Integer> candidates;
 	
-	private LocalCount(Coordinate coordinate, Set<Integer> candidates) {
-		this.coordinate = coordinate;
+	private LocalCount(Square square, Set<Integer> candidates) {
+		this.square = square;
 		this.candidates = candidates;
 	}
 
-	Coordinate coordinate() {
-		return coordinate;
+	Square square() {
+		return square;
 	}
 
 	Set<Integer> candidates() {

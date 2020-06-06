@@ -12,7 +12,7 @@ public interface SudokuLifeCycle {
 		return;
 	}
 	
-	default void moveMade(Coordinate coord, int val) {
+	default void moveMade(Square square, int val) {
 		return;
 	}
 
@@ -31,8 +31,8 @@ public interface SudokuLifeCycle {
 			}
 
 			@Override
-			public void moveMade(Coordinate coord, int val) {
-				Arrays.stream(subscribers).forEach( sub -> sub.moveMade(coord, val));
+			public void moveMade(Square square, int val) {
+				Arrays.stream(subscribers).forEach( sub -> sub.moveMade(square, val));
 			}
 			
 		};

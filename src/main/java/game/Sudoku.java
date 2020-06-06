@@ -11,12 +11,12 @@ import algo.Backtrack;
  */
 public final class Sudoku extends Backtrack<SudokuBoard>{
 
-	private final Coordinate[] moves;
+	private final Square[] moves;
 	private final PruningStrategy pruningStrategy;
 	private final SudokuLifeCycle subscriber;
 	
 	private Sudoku(PruningStrategy pruningStrategy, SudokuLifeCycle subscriber) {
-		moves = new Coordinate[SudokuBoard.NSQUARES];
+		moves = new Square[SudokuBoard.NSQUARES];
 		this.pruningStrategy = pruningStrategy;
 		this.subscriber = subscriber;
 	}
@@ -46,13 +46,13 @@ public final class Sudoku extends Backtrack<SudokuBoard>{
 	
 	@Override
 	protected int[] constructCandidates(int[] a, int k, SudokuBoard board) {
-		return pruningStrategy.nextSquare(board).map( coord -> {
-			moves[k] = coord;
-			return possibleValues(coord, board);
+		return pruningStrategy.nextSquare(board).map( square -> {
+			moves[k] = square;
+			return possibleValues(square, board);
 		}).orElse(new int[0]);
 	}
 
-	private int[] possibleValues(Coordinate nextSquare, SudokuBoard board) {
+	private int[] possibleValues(Square nextSquare, SudokuBoard board) {
 		return pruningStrategy.candidates(nextSquare, board).stream().mapToInt(n -> n).toArray();
 	}
 

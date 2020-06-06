@@ -15,7 +15,7 @@ import java.util.Optional;
  */
 public interface NextSquareStrategy {
 
-	Optional<Coordinate> nextSquare(SudokuBoard board);
+	Optional<Square> nextSquare(SudokuBoard board);
 	
 	static NextSquareStrategy sequentialOrder() {
 		return board -> board.freeSquares().stream().findFirst();
@@ -27,7 +27,7 @@ public interface NextSquareStrategy {
 				.stream()
 				.sorted(LocalCount::sortByCandidateTotal)
 				.findFirst()
-				.map(LocalCount::coordinate);
+				.map(LocalCount::square);
 		};
 	}
 

@@ -32,7 +32,7 @@ final class StatsCollector implements SudokuLifeCycle {
 	}
 
 	@Override
-	public void moveMade(Coordinate coord, int val) {
+	public void moveMade(Square square, int val) {
 		numbMove++;
 	}
 

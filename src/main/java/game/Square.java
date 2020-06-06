@@ -2,12 +2,15 @@ package game;
 
 import java.util.Objects;
 
-final class Coordinate {
+/**
+ * Space on the board to fill number 1 to 9.  It has coordinate system of x for row and y for column.
+ */
+final class Square {
 	
 	private final int x;
 	private final int y;
 	
-	protected Coordinate(int x, int y) {
+	protected Square(int x, int y) {
 		this.x = x;
 		this.y = y;
 	}
@@ -45,7 +48,7 @@ final class Coordinate {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Coordinate other = (Coordinate) obj;
+		Square other = (Square) obj;
 		return x == other.x && y == other.y;
 	}
 

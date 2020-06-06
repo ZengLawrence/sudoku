@@ -12,8 +12,8 @@ package game;
 final class PrintMovesToConsole implements SudokuLifeCycle {
 
 	@Override
-	public void moveMade(Coordinate coord, int val) {
-		System.out.println("Square: " + coord + " Value: " + val);
+	public void moveMade(Square square, int val) {
+		System.out.println("Square: " + square + " Value: " + val);
 	}
 
 }

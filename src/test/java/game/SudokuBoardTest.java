@@ -72,7 +72,7 @@ class SudokuBoardTest {
 		};
 		SudokuBoard board = new SudokuBoard(startValues);
 		
-		board.fill(new Coordinate(0, 2), 3);
+		board.fill(new Square(0, 2), 3);
 		
 		int[][] endValues = {
 				{0, 1, 3, 0, 0, 0, 0, 0, 0},
@@ -107,7 +107,7 @@ class SudokuBoardTest {
 		};
 		SudokuBoard board = new SudokuBoard(startValues);
 		
-		board.unfill(new Coordinate(2, 2));
+		board.unfill(new Square(2, 2));
 		
 		int[][] endValues = {
 				{0, 1, 0, 0, 0, 0, 0, 0, 0},

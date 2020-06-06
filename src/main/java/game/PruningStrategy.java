@@ -27,13 +27,13 @@ class PruningStrategy implements NextSquareStrategy, CandidateStrategy {
 	}
 
 	@Override
-	public Optional<Coordinate> nextSquare(SudokuBoard board) {
+	public Optional<Square> nextSquare(SudokuBoard board) {
 		return nextSquareStrategy.nextSquare(board);
 	}
 
 	@Override
-	public Set<Integer> candidates(Coordinate coord, SudokuBoard board) {
-		return candidateStrategy.candidates(coord, board);
+	public Set<Integer> candidates(Square square, SudokuBoard board) {
+		return candidateStrategy.candidates(square, board);
 	}
 	
 }

@@ -28,37 +28,37 @@ final class Box {
 			{7, 7, 7, 8, 8, 8, 9, 9, 9},
 	};
 	
-	private static final Map<Integer, List<Coordinate>> BOX_COORDINATE_MAP;
+	private static final Map<Integer, List<Square>> BOX_SQUARES_MAP;
 	
 	static {
-		BOX_COORDINATE_MAP = new HashMap<>();
+		BOX_SQUARES_MAP = new HashMap<>();
 		int dimension = BOX_MATRIX.length;
 		for (int x = 0; x < dimension ; x++) {
 			for (int y = 0; y < dimension; y++) {
 				int boxNumber = BOX_MATRIX[x][y];
-				List<Coordinate> coordinates = BOX_COORDINATE_MAP.getOrDefault(boxNumber, new ArrayList<>());
-				coordinates.add(new Coordinate(x, y));
-				BOX_COORDINATE_MAP.put(boxNumber, coordinates);
+				List<Square> squares = BOX_SQUARES_MAP.getOrDefault(boxNumber, new ArrayList<>());
+				squares.add(new Square(x, y));
+				BOX_SQUARES_MAP.put(boxNumber, squares);
 			}
 		}
 	}
 
 	/**
 	 * 
-	 * @param coord
-	 * @return Box that the given coordinate belongs to.
+	 * @param square
+	 * @return Box that the given square belongs to.
 	 */
-	static final Box box(Coordinate coord) {
-		return new Box(BOX_MATRIX[coord.x()][coord.y()]);
+	static final Box box(Square square) {
+		return new Box(BOX_MATRIX[square.x()][square.y()]);
 	}
 	
 	/**
 	 * 
 	 * @param box
-	 * @return List of coordinates in the box
+	 * @return List of squares in the box
 	 */
-	static final List<Coordinate> coordinatesIn(Box box) {
-		return new ArrayList<>(BOX_COORDINATE_MAP.get(box.number));
+	static final List<Square> squaresIn(Box box) {
+		return new ArrayList<>(BOX_SQUARES_MAP.get(box.number));
 	}
 	
 	private final int number;

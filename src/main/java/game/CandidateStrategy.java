@@ -13,7 +13,7 @@ import java.util.Set;
  */
 public interface CandidateStrategy {
 
-	Set<Integer> candidates(Coordinate coord, SudokuBoard board);
+	Set<Integer> candidates(Square square, SudokuBoard board);
 	
 	/**
 	 * 

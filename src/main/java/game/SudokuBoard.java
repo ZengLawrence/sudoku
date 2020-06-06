@@ -1,6 +1,6 @@
 package game;
 
-import static game.Box.coordinatesIn;
+import static game.Box.squaresIn;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -44,21 +44,21 @@ final class SudokuBoard {
 	/**
 	 * Fill a square on the board with a value i.e. 1 - 9.
 	 * 
-	 * @param coord Coordinate of the square
+	 * @param square A square on the board
 	 * @param val
 	 */
-	void fill(Coordinate coord, int val) {
-		values[coord.x()][coord.y()] = val;
+	void fill(Square square, int val) {
+		values[square.x()][square.y()] = val;
 		freeCount--;
 	}
 	
 	/**
 	 * Change a square on board to free space.
 	 * 
-	 * @param coord Coordinate of the square
+	 * @param square A square on the board
 	 */
-	void unfill(Coordinate coord) {
-		values[coord.x()][coord.y()] = FREE_SQUARE;
+	void unfill(Square square) {
+		values[square.x()][square.y()] = FREE_SQUARE;
 		freeCount++;
 	}
 	
@@ -66,47 +66,47 @@ final class SudokuBoard {
 	 * 
 	 * @return Collection of free squares that do not have value placed in them.
 	 */
-	List<Coordinate> freeSquares() {
-		List<Coordinate> freeSquares = new ArrayList<>();
+	List<Square> freeSquares() {
+		List<Square> freeSquares = new ArrayList<>();
 		for (int i = 0; i < DIMENSION; i++) {
 			for (int j = 0; j < DIMENSION; j++) {
 				if (values[i][j] == FREE_SQUARE) {
-					freeSquares.add(new Coordinate(i, j));
+					freeSquares.add(new Square(i, j));
 				}
 			}
 		}
 		return freeSquares;
 	}
 	
-	List<Coordinate> freeSquaresIn(Row row) {
-		List<Coordinate> freeSquares = new ArrayList<>();
+	List<Square> freeSquaresIn(Row row) {
+		List<Square> freeSquares = new ArrayList<>();
 		int x = row.x();
 		for (int y = 0; y < DIMENSION; y++) {
 			if (values[x][y] == FREE_SQUARE) {
-				freeSquares.add(new Coordinate(x, y));
+				freeSquares.add(new Square(x, y));
 			}
 		}
 		return freeSquares;
 	}
 	
-	List<Coordinate> freeSquaresIn(Column col) {
+	List<Square> freeSquaresIn(Column col) {
 		int y = col.y();
-		List<Coordinate> freeSquares = new ArrayList<>();
+		List<Square> freeSquares = new ArrayList<>();
 		for (int x = 0; x < DIMENSION; x++) {
 			if (values[x][y] == FREE_SQUARE) {
-				freeSquares.add(new Coordinate(x, y));
+				freeSquares.add(new Square(x, y));
 			}
 		}
 		return freeSquares;
 	}
 	
-	List<Coordinate> freeSquaresIn(Box box) {
-		List<Coordinate> freeSquares = new ArrayList<>();
-		for (Coordinate sq : coordinatesIn(box)) {
+	List<Square> freeSquaresIn(Box box) {
+		List<Square> freeSquares = new ArrayList<>();
+		for (Square sq : squaresIn(box)) {
 			int x = sq.x();
 			int y = sq.y();
 			if (values[x][y] == FREE_SQUARE) {
-				freeSquares.add(new Coordinate(x, y));
+				freeSquares.add(new Square(x, y));
 			}
 		}
 		return freeSquares;
@@ -135,14 +135,14 @@ final class SudokuBoard {
 	}
 	
 	List<Integer> valuesIn(Box box) {
-		return valuesIn(coordinatesIn(box));
+		return valuesIn(squaresIn(box));
 	}
 	
-	private List<Integer> valuesIn(List<Coordinate> coordinates) {
+	private List<Integer> valuesIn(List<Square> squares) {
 		List<Integer> l = new ArrayList<>();
-		for (Coordinate coord : coordinates) {
-			int x = coord.x();
-			int y = coord.y();
+		for (Square square : squares) {
+			int x = square.x();
+			int y = square.y();
 			if (values[x][y] > 0) {
 				l.add(values[x][y]);
 			}

@@ -18,20 +18,20 @@ import java.util.stream.Collectors;
  */
 final class LookAhead {
 
-	static Set<Integer> candidates(Coordinate coord, SudokuBoard board) {
-		LookAhead lookAhead = forSquare(coord, board);
-		return LocalCount.candidates(coord, board).stream()
+	static Set<Integer> candidates(Square square, SudokuBoard board) {
+		LookAhead lookAhead = forSquare(square, board);
+		return LocalCount.candidates(square, board).stream()
 				.filter( c -> lookAhead.maybeViable(c))
 				.collect(Collectors.toSet());
 	}
 	
-	private static LookAhead forSquare(Coordinate coord, SudokuBoard board) {
-		Collection<Coordinate> otherFreeSquaresInRow = board.freeSquaresIn(coord.row());
-		otherFreeSquaresInRow.remove(coord);
-		Collection<Coordinate> otherFreeSquaresInColumn = board.freeSquaresIn(coord.column());
-		otherFreeSquaresInColumn.remove(coord);
-		Collection<Coordinate> otherFreeSquaresInBox = board.freeSquaresIn(coord.box());
-		otherFreeSquaresInBox.remove(coord);
+	private static LookAhead forSquare(Square square, SudokuBoard board) {
+		Collection<Square> otherFreeSquaresInRow = board.freeSquaresIn(square.row());
+		otherFreeSquaresInRow.remove(square);
+		Collection<Square> otherFreeSquaresInColumn = board.freeSquaresIn(square.column());
+		otherFreeSquaresInColumn.remove(square);
+		Collection<Square> otherFreeSquaresInBox = board.freeSquaresIn(square.box());
+		otherFreeSquaresInBox.remove(square);
 		
 		return new LookAhead(
 				localCounts(otherFreeSquaresInRow, board), 
