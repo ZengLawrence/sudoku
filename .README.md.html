@@ -640,7 +640,7 @@ function setDocumentScrollTop(ypos)
 </head>
 <body class="markdown-body">
 <h1> <a id="sudoku" class="anchor" href="#sudoku" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Sudoku</h1> 
-<p>This is a Java implementation of solving Sudoku puzzles based on Skiena's backtracking algorithm as described in his book &quot;The Algorithm Design Manual&quot;.</p> 
+<p>This is a Java implementation of solving Sudoku puzzles based on Skiena's backtracking algorithm as described in his book <a href="http://www.algorist.com/algorist.html" rel="nofollow">&quot;The Algorithm Design Manual&quot;</a>.</p> 
 <h2> <a id="first-thing-first-what-is-sudoku" class="anchor" href="#first-thing-first-what-is-sudoku" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>First thing first, what is Sudoku?</h2> 
 <p><a href="https://en.wikipedia.org/wiki/Sudoku" rel="nofollow">Sudoku</a> is a puzzle game whose objective is to fill in a 9x9 grid of squares with numbers 1 to 9. In each row, column, or box (3x3 grid of squares within the grid), there should not be any repeating numbers.</p> 
 <p>Note: 'box' is what Skiena called 'sector' in his book. I use 'box' to be more aligned to what is generally accepted term in Sudoku games.</p> 
@@ -662,6 +662,7 @@ function setDocumentScrollTop(ypos)
 </ol> 
 <h3> <a id="comparison-of-pruning-strategies" class="anchor" href="#comparison-of-pruning-strategies" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Comparison of Pruning Strategies</h3> 
 <p>This is a summary of what I think are more interesting comparison of efficacy of each strategy. Feel free to play with the source code and come up with your own comparison.</p> 
+<p>Hardware on which processing time is collected on is <em>puny</em> Intel Atom Z3735F @ 1.33GHZ with 2GB of RAM memory.</p> 
 <h4> <a id="medium-complexity-puzzle-example" class="anchor" href="#medium-complexity-puzzle-example" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Medium Complexity Puzzle Example</h4> 
 <p>Number of free squares in this example is 43.</p> 
 <p><a href="./image/example_puzzle.png" target="_blank" rel="noopener noreferrer"><img src="./image/example_puzzle.png" alt="Medium Complexity Sudoku puzzle" style="max-width:100%;" /></a></p> 
@@ -716,6 +717,19 @@ function setDocumentScrollTop(ypos)
   </tr> 
  </tbody> 
 </table> 
+<blockquote> 
+ <blockquote> 
+  <blockquote> 
+  </blockquote> 
+ </blockquote> 
+</blockquote> 
+<p><strong>Take-Home Lesson</strong>: &quot;Do not optimize prematurely.&quot; Modern hardware is very fast, which simple strategy would be good enough. Most of puzzle can be solved under 1 second. Even for the hardest one, it takes about 1.5 second with simple pruning strategies on <em>puny</em> modern hardware (Intel Atom).</p> 
+<blockquote> 
+ <blockquote> 
+  <blockquote> 
+  </blockquote> 
+ </blockquote> 
+</blockquote> 
 <h2> <a id="source-code-structures" class="anchor" href="#source-code-structures" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Source Code Structures</h2> 
 <h3> <a id="packages" class="anchor" href="#packages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Packages</h3> 
 <p>algo - Basic algorithm for backtrack.</p> 
