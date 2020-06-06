@@ -1,5 +1,5 @@
 # Sudoku
-This is a Java implementation of solving Sudoku puzzles based on Skiena's backtracking algorithm as described in his book "The Algorithm Design Manual".
+This is a Java implementation of solving Sudoku puzzles based on Skiena's backtracking algorithm as described in his book ["The Algorithm Design Manual"](http://www.algorist.com/algorist.html).
 
 ## First thing first, what is Sudoku?
 [Sudoku](https://en.wikipedia.org/wiki/Sudoku) is a puzzle game whose objective is to fill in a 9x9 grid of squares with numbers 1 to 9.  In each row, column, or box (3x3 grid of squares within the grid), there should not be any repeating numbers.  
@@ -24,6 +24,35 @@ Tow different type of pruning strategies are implemented, selecting next square 
 ### Candidate Suggestion
 1. Local count - find candidates from a square after removing values already placed in its row, column or boxes.
 1. Look ahead - find candidates who would not block other free squares in its row, column or sector.
+
+### Comparison of Pruning Strategies
+This is a summary of what I think are more interesting comparison of efficacy of each strategy.  Feel free to play with the source code and come up with your own comparison.
+
+Hardware on which processing time is collected on is *puny* Intel Atom Z3735F @ 1.33GHZ with 2GB of RAM memory.
+
+#### Medium Complexity Puzzle Example
+Number of free squares in this example is 43.
+
+![Medium Complexity Sudoku puzzle](./image/example_puzzle.png)
+
+Next Square      | Candidate Suggestion | Moves Required | Processing Time |
+---------------- | -------------------- | --------------:| ---------------:|
+Sequential       | Local Count          | 72             | 97ms            |
+Most Constrained | Local Count          | 72             | 62ms            |
+
+#### Hard Complexity Puzzle Example
+Number of free squares in this example is 64.  Or only 17 squares filled, which is the lowest possible number of clues.
+
+![Hard Complexity Sudoku puzzle](./image/example_hard_puzzle.png)
+
+Next Square      | Candidate Suggestion | Moves Required | Processing Time |
+---------------- | -------------------- | --------------:| ---------------:|
+Most Constrained | Local Count          | 10,373         | 1,509ms         |
+Most Constrained | Look Ahead           |    440         |   191ms         |
+
+>>>
+**Take-Home Lesson**:  "Do not optimize prematurely."  Modern hardware is very fast, which simple strategy would be good enough.  Most of puzzle can be solved under 1 second. Even for the hardest one, it takes about 1.5 second with simple pruning strategies on *puny* modern hardware (Intel Atom).
+>>>  
 
 ## Source Code Structures
 ### Packages
