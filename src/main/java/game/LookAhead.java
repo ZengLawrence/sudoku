@@ -30,32 +30,32 @@ final class LookAhead {
 		otherFreeSquaresInRow.remove(coord);
 		Collection<Coordinate> otherFreeSquaresInColumn = board.freeSquaresIn(coord.column());
 		otherFreeSquaresInColumn.remove(coord);
-		Collection<Coordinate> otherFreeSquaresInSector = board.freeSquaresIn(coord.sector());
-		otherFreeSquaresInSector.remove(coord);
+		Collection<Coordinate> otherFreeSquaresInBox = board.freeSquaresIn(coord.box());
+		otherFreeSquaresInBox.remove(coord);
 		
 		return new LookAhead(
 				localCounts(otherFreeSquaresInRow, board), 
 				localCounts(otherFreeSquaresInColumn, board), 
-				localCounts(otherFreeSquaresInSector, board));
+				localCounts(otherFreeSquaresInBox, board));
 	}
 	
 	
 	
 	private final Collection<LocalCount> otherFreeSquaresInRow;
 	private final Collection<LocalCount> otherFreeSquaresInColumn;
-	private final Collection<LocalCount> otherFreeSquaresInSector;
+	private final Collection<LocalCount> otherFreeSquaresInBox;
 	
 	private LookAhead(Collection<LocalCount> otherFreeSquaresInRow, Collection<LocalCount> otherFreeSquaresInColumn,
-			Collection<LocalCount> otherFreeSquaresInSector) {
+			Collection<LocalCount> otherFreeSquaresInBox) {
 		this.otherFreeSquaresInRow = unmodifiableCollection(otherFreeSquaresInRow);
 		this.otherFreeSquaresInColumn = unmodifiableCollection(otherFreeSquaresInColumn);
-		this.otherFreeSquaresInSector = unmodifiableCollection(otherFreeSquaresInSector);
+		this.otherFreeSquaresInBox = unmodifiableCollection(otherFreeSquaresInBox);
 	}
 	
 	private boolean maybeViable(int candidate) {
 		return maybeViable(candidate, otherFreeSquaresInRow) &&
 				maybeViable(candidate, otherFreeSquaresInColumn) &&
-				maybeViable(candidate, otherFreeSquaresInSector);
+				maybeViable(candidate, otherFreeSquaresInBox);
 	}
 	
 	private static boolean maybeViable(int candidate, Collection<LocalCount> otherFreeSquares) {

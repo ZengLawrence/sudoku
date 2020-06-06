@@ -28,8 +28,8 @@ final class Coordinate {
 		return new Column(y);
 	}
 	
-	Sector sector() {
-		return Sector.sector(this);
+	Box box() {
+		return Box.box(this);
 	}
 	
 	@Override

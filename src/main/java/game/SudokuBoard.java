@@ -1,6 +1,6 @@
 package game;
 
-import static game.Sector.coordinatesIn;
+import static game.Box.coordinatesIn;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -100,9 +100,9 @@ final class SudokuBoard {
 		return freeSquares;
 	}
 	
-	List<Coordinate> freeSquaresIn(Sector sector) {
+	List<Coordinate> freeSquaresIn(Box box) {
 		List<Coordinate> freeSquares = new ArrayList<>();
-		for (Coordinate sq : coordinatesIn(sector)) {
+		for (Coordinate sq : coordinatesIn(box)) {
 			int x = sq.x();
 			int y = sq.y();
 			if (values[x][y] == FREE_SQUARE) {
@@ -134,8 +134,8 @@ final class SudokuBoard {
 		return l;
 	}
 	
-	List<Integer> valuesIn(Sector sector) {
-		return valuesIn(coordinatesIn(sector));
+	List<Integer> valuesIn(Box box) {
+		return valuesIn(coordinatesIn(box));
 	}
 	
 	private List<Integer> valuesIn(List<Coordinate> coordinates) {

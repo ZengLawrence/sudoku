@@ -17,7 +17,7 @@ public interface CandidateStrategy {
 	
 	/**
 	 * 
-	 * @return Candidate values for a free squares after removing values already placed in its row, column or sector. 
+	 * @return Candidate values for a free squares after removing values already placed in its row, column or box. 
 	 */
 	static CandidateStrategy localCount() {
 		return LocalCount::candidates;

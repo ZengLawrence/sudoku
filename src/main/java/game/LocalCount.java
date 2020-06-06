@@ -10,7 +10,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- * Find candidates from a square after removing values already placed in its row, column or sector.
+ * Find candidates from a square after removing values already placed in its row, column or box.
  * 
  * @author Lawrence
  *
@@ -22,7 +22,7 @@ final class LocalCount {
 		Arrays.fill(candidates, 1, candidates.length, true);
 		board.valuesIn(coord.row()).forEach(val -> candidates[val] = false);
 		board.valuesIn(coord.column()).forEach(val -> candidates[val] = false);
-		board.valuesIn(coord.sector()).forEach(val -> candidates[val] = false);
+		board.valuesIn(coord.box()).forEach(val -> candidates[val] = false);
 		
 		Set<Integer> s = new HashSet<>();
 		for (int i = 0; i < candidates.length; i++) {
